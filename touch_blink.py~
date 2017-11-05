@@ -1,0 +1,17 @@
+import mraa
+print (mraa.getVersion())
+led = mraa.Gpio(23)
+beeper = mraa.Gpio(31)
+beeper.dir(mraa.DIR_OUT)
+beeper.write(0)
+led.dir(mraa.DIR_OUT)
+led.write(0)
+touch = mraa.Gpio(29)
+touch.dir(mraa.DIR_IN)
+while True:
+    touchButton = int(touch.read())
+    if(touchButton):
+        led.write(1)
+        beeper.write(1)
+    else:
+        led.write(0)
